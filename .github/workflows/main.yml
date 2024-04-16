@@ -1,0 +1,36 @@
+import pyautogui
+import time
+
+# Delay before starting (in seconds)
+time.sleep(5)
+
+# Sample mining workflow actions
+try:
+    # Open mining software (e.g., xmr-stak or Claymore's Ethereum miner)
+    pyautogui.write('xmr-stak')  # Replace with your mining software's name
+    pyautogui.press('enter')
+    time.sleep(10)  # Wait for the miner to initialize
+
+    # Start mining
+    # Adjust the below commands based on your mining software
+    pyautogui.write('./xmr-stak --currency monero -o pool.minexmr.com:4444 -u YOUR_WALLET_ADDRESS -p x')
+    pyautogui.press('enter')
+    time.sleep(10)  # Allow time for mining to start
+
+    # Keep the session alive
+    # You might want to move the mouse occasionally to prevent the RDP from disconnecting
+    pyautogui.moveTo(50, 50)
+    time.sleep(2)
+    pyautogui.moveTo(100, 100)
+    time.sleep(2)
+
+    # To stop mining (optional)
+    # pyautogui.write('exit')
+    # pyautogui.press('enter')
+    # time.sleep(5)
+
+    # Shutdown or disconnect RDP
+    pyautogui.hotkey('ctrl', 'alt', 'end')
+
+except Exception as e:
+    print(f"An error occurred: {e}")
